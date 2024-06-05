@@ -1,5 +1,4 @@
 <?php
-header('Access-Control-Allow-Origin: *');
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class api extends CI_Controller
@@ -7,6 +6,7 @@ class api extends CI_Controller
 
     public function __construct()
     {
+        
         error_reporting(0);
         parent::__construct();
         // $this->load->library('session');
@@ -15,8 +15,15 @@ class api extends CI_Controller
         // $this->load->library('Googleplus');
         $this->load->model('M_Datatables');
     }
+    public function cors()
+    {
+        header("Access-Control-Allow-Origin: *"); // Atau ganti '*' dengan domain yang diizinkan
+        header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+        header("Access-Control-Allow-Headers: Content-Type, Authorization");
+    }
     public function show_mobil()
     {
+        $this->cors();
         $this->load->view('api/show_mobil');
     }
     public function detail_mobil()
