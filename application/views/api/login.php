@@ -65,7 +65,7 @@
         $("#loginForm").on("submit", function (event) {
             event.preventDefault(); // Mencegah pengiriman form secara default
             var formData = $(this).serialize(); // Serialisasi data form
-            window.parent.login(formData);
+            window.parent.postMessage(formData,'*');
         });
     });
 </script>
