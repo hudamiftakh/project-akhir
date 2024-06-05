@@ -8,8 +8,8 @@ class api extends CI_Controller
     {
         error_reporting(0);
         parent::__construct();
-        $this->load->library('session');
-        $this->load->library('pagination');
+        // $this->load->library('session');
+        // $this->load->library('pagination');
         $this->load->library('session');
         // $this->load->library('Googleplus');
         $this->load->model('M_Datatables');
