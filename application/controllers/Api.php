@@ -1,4 +1,5 @@
 <?php
+header('Access-Control-Allow-Origin: *');
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class api extends CI_Controller
@@ -6,7 +7,6 @@ class api extends CI_Controller
 
     public function __construct()
     {
-        header('Access-Control-Allow-Origin: *');
         error_reporting(0);
         parent::__construct();
         // $this->load->library('session');
