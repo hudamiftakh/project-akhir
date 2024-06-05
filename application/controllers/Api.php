@@ -6,6 +6,7 @@ class api extends CI_Controller
 
     public function __construct()
     {
+        header('Access-Control-Allow-Origin: *');
         error_reporting(0);
         parent::__construct();
         // $this->load->library('session');
