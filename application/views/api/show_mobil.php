@@ -59,7 +59,7 @@
                         ?>
                         <div class="col-12">
                             <div class="card product-box"
-                                onclick="window.parent.detailKendaraan('<?php echo $dapod['kendaraan_id']; ?>|<?php echo $_REQUEST['tgl_awal']; ?>|<?php echo $_REQUEST['tgl_akhir']; ?>');"
+                                onclick="sendDetailKendaraanMessage('<?php echo $dapod['kendaraan_id']; ?>', '<?php echo $_REQUEST['tgl_awal']; ?>', '<?php echo $_REQUEST['tgl_akhir']; ?>');"
                                 class="btn btn-primary d-block w-100">
                                 <table>
                                     <tr>
@@ -143,10 +143,16 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="<?php echo base_url('dist/whatsapp/js/whatsapp-editor.js'); ?>"></script>
     <script>
-        function panggilFungsiInduk() {
-            // Memanggil fungsi di window induk
-            window.parent.fungsiInduk();
+        function sendDetailKendaraanMessage(kendaraanId, tglAwal, tglAkhir) {
+            var message = {
+                action: 'detailKendaraan',
+                kendaraanId: kendaraanId,
+                tglAwal: tglAwal,
+                tglAkhir: tglAkhir
+            };
+            window.parent.postMessage(message, '*');
         }
+    </script>
     </script>
 
 </body>
