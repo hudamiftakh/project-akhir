@@ -25,8 +25,8 @@ class auth extends CI_Controller
     }
     public function login()
     {
-        $url['url_google'] = $this->googleplus->loginURL();
-        $this->load->view('login', $url);
+        // $url['url_google'] = $this->googleplus->loginURL();
+        $this->load->view('login');
     }
     public function logout()
     {
