@@ -11,7 +11,7 @@ class api extends CI_Controller
         $this->load->library('session');
         $this->load->library('pagination');
         $this->load->library('session');
-        $this->load->library('Googleplus');
+        // $this->load->library('Googleplus');
         $this->load->model('M_Datatables');
     }
     public function show_mobil()
