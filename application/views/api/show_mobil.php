@@ -117,7 +117,7 @@
         <br>
         <div class="card p-2">
             <h5 for=""><i class="fa fa-filter"></i> Pilih Filter</h5>
-            <form action="" style="padding-top: 4px;">
+            <form action="<?php echo base_url('api/show_mobil') ?>" style="padding-top: 4px;">
                 <label for="">Tanggal Awal</label>
                 <input type="date" name="tgl_awal" value="<?php echo $_REQUEST['tgl_awal']; ?>" class="form-control"
                     placeholder="Pilih Tanggal Awal" required>
