@@ -126,7 +126,7 @@
                     placeholder="Pilih Tanggal Akhir" required>
                 <br>
                 <div class="d-grid gap-2">
-                    <button class="btn btn-primary btn-block" name="showTanggal" value="Test">Cari Mobil</button>
+                    <button type="submit" class="btn btn-primary btn-block" name="showTanggal" value="Test">Cari Mobil</button>
                 </div>
             </form>
         </div>
