@@ -65,7 +65,7 @@
         $("#loginForm").on("submit", function (event) {
             event.preventDefault(); // Mencegah pengiriman form secara default
             var formData = $(this).serialize(); // Serialisasi data form
-            window.parent.postMessage(formData,'https://rental.wabot.web.id');
+            window.postMessage(formData,'https://rental.wabot.web.id');
         });
     });
 </script>
