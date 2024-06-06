@@ -59,13 +59,26 @@
             </div>
         </div>
     </div>
+    <iframe id="targetIframe" src="https://rental.wabot.web.id" style="display:none;"></iframe>
 </body>
 <script>
+    // $(document).ready(function () {
+    //     $("#loginForm").on("submit", function (event) {
+    //         event.preventDefault(); // Mencegah pengiriman form secara default
+    //         var formData = $(this).serialize(); // Serialisasi data form
+    //         window.postMessage(formData,'https://rental.wabot.web.id');
+    //     });
+    // });
     $(document).ready(function () {
         $("#loginForm").on("submit", function (event) {
-            event.preventDefault(); // Mencegah pengiriman form secara default
-            var formData = $(this).serialize(); // Serialisasi data form
-            window.postMessage(formData,'https://rental.wabot.web.id');
+            event.preventDefault(); // Prevent the default form submission
+            var formData = $(this).serialize(); // Serialize the form data
+
+            // Ensure the iframe is loaded before sending the message
+            var targetIframe = document.getElementById("targetIframe");
+            targetIframe.onload = function () {
+                targetIframe.contentWindow.postMessage(formData, 'https://rental.wabot.web.id');
+            };
         });
     });
 </script>
