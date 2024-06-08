@@ -35,15 +35,13 @@
 <body>
     <div class="container-fluid">
         <br>
-        <br>
-        <br>
         <?php
         $id = $_REQUEST['id'];
         $showDetaiMobil = $this->db->get_where('m_kendaraan', array('kendaraan_id' => $id))->row_array();
         $showDetailGambar = $this->db->get_where('m_foto_kendaraan', array('kendaraan_id' => $id))->row_array();
 
-        $tgl2 = strtotime($_REQUEST['tgl_awal']);
-        $tgl1 = strtotime($_REQUEST['tgl_akhir']);
+        $tgl2 = strtotime($_REQUEST['tgl_akhir']);
+        $tgl1 = strtotime($_REQUEST['tgl_awal']);
         $jarak = $tgl2 - $tgl1;
         $hari = $jarak / 60 / 60 / 24;
 

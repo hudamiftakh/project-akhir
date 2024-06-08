@@ -38,13 +38,8 @@
 
         <?php if (isset($_REQUEST['showTanggal'])): ?>
             <br>
-            <br>
-            <br>
             <div class="col-lg-12">
                 <div class="row">
-                    <br>
-                    <br>
-                    <br>
                     <?php
                     if (!empty($_REQUEST['q']) or !empty($_REQUEST['jenis_transmisi'])) {
                         $q = "WHERE jenis_transmisi='" . $_REQUEST['jenis_transmisi'] . "' AND nama LIKE '%" . $_REQUEST['q'] . "%'";

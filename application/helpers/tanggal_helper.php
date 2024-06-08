@@ -241,4 +241,15 @@ function generateSecretKey($length = 32)
 	}
 	return $secretKey;
 }
+
+function truncateStringToWords($string, $wordLimit) {
+    $words = explode(' ', $string);  // Memecah string menjadi array kata
+    if (count($words) > $wordLimit) {
+        $words = array_slice($words, 0, $wordLimit);  // Mengambil 30 kata pertama
+        $truncatedString = implode(' ', $words);  // Menggabungkan kembali kata-kata menjadi string
+        return $truncatedString . '...';  // Menambahkan ellipsis (...) di akhir string yang dipotong
+    } else {
+        return $string;  // Mengembalikan string asli jika kurang dari atau sama dengan 30 kata
+    }
+}
 ?>

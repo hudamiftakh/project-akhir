@@ -94,13 +94,21 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <div class="d-grid gap-1">
-                        <a class="btn btn-primary" href="<?php echo base_url('/api/proses_booking'); ?>?id=<?php echo $_REQUEST['id']; ?>&tgl_awal=<?php echo $_REQUEST['tgl_awal']; ?>&tgl_akhir=<?php echo $_REQUEST['tgl_akhir']; ?>&id_user=<?php echo $_REQUEST['id_user']; ?>" type="button">Proses</a>
-                        <button class="btn btn-danger" onclick="window.parent.backtoHome();" type="button">Kembali</button>
-                    </div>  
+
                 </td>
             </tr>
         </table>
+        <div class="d-grid gap-1">
+            <?php if ($_REQUEST['id_user'] == 'null'): ?>
+                <button class="btn btn-primary btn-lg" href="#" onclick="alert('Maaf harus login terlebih dahulu');"
+                    type="button">Proses</button>
+            <?php else: ?>
+                <a class="btn btn-primary btn-lg"
+                    href="<?php echo base_url('/api/proses_booking'); ?>?id=<?php echo $_REQUEST['id']; ?>&tgl_awal=<?php echo $_REQUEST['tgl_awal']; ?>&tgl_akhir=<?php echo $_REQUEST['tgl_akhir']; ?>&id_user=<?php echo $_REQUEST['id_user']; ?>"
+                    type="button">Proses</a>
+            <?php endif; ?>
+            <!-- <button class="btn btn-danger" onclick="window.parent.backtoHome();" type="button">Kembali</button> -->
+        </div>
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -115,4 +123,5 @@
 <script src="https://bootstrapdemos.adminmart.com/modernize/dist/assets/js/vendor.min.js"></script>
 <!-- Import Js Files -->
 <script src="<?php echo base_url(); ?>dist/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
 </html>

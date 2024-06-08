@@ -40,8 +40,12 @@
             ?>
             <div class="card-body" style="padding-left: 0px; padding-top: 0px;">
                 <div class="row">
+                    <?php $url = base_url('api/pesanan') . "?id_user=" . $_REQUEST['id_user']; ?>
                     <div class="col-lg-12">
                         <table class="table table stripped">
+                            <tr>
+                                <td colspan="2"><a class="btn btn-danger" href="<?php echo $url; ?>"> <i class="fa fa-back"></i> Kembali</a></td>
+                            </tr>
                             <tr>
                                 <td width="1px" nowrap="">Kode Transaksi</td>
                                 <td>: <?php echo $showDetailPesanan['nomor_order']; ?></td>
@@ -115,7 +119,7 @@
                                 foreach ($result_order as $key => $value) {
                                     $url = base_url('api/pesanan') . "?id_user=" . $_REQUEST['id_user'] . "&detail=true&kode_transaksi=" . $value['nomor_order'];
                                     ?>
-                                    <a href="#" onclick="window.parent.detailPesanan('<?php echo $url; ?>');"
+                                    <a href="<?php echo $url; ?>"
                                         class="list-group-item list-group-item-action" aria-current="true">
                                         <div class="d-flex w-100 justify-content-between">
                                             <h5 class="mb-1"><span

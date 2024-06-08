@@ -26,10 +26,35 @@ class api extends CI_Controller
         $this->cors();
         $this->load->view('api/show_mobil');
     }
+    public function api_show_mobil()
+    {
+        if (!empty($_REQUEST['q']) or !empty($_REQUEST['jenis_transmisi'])) {
+            $q = "WHERE a.jenis_transmisi='" . $_REQUEST['jenis_transmisi'] . "' AND a.nama LIKE '%" . $_REQUEST['q'] . "%'";
+        } else {
+            $q = "";
+        }
+        $product = $this->db->query("SELECT a.*,  SUBSTRING_INDEX(a.deskripsi, ' ', 50) AS deskripsi_pendek, FORMAT(harga,0) as harga_id FROM m_kendaraan as a" . $q . " " . $_REQUEST['sql'])->result_array();
+        $data = array();
+        foreach ($product as $key => $dapod):
+            $gambar = $this->db->get_where("m_foto_kendaraan", array('kendaraan_id' => $dapod['kendaraan_id']))->row_array();
+            $dapod['gambar'] = base_url().'storage/'.$gambar['file_foto'];
+            $stock_akhir = 1;
+            $data[] = [
+                'data' => $dapod,
+                'gambar' => [
+                    'data' =>'hasile'
+                ]
+            ];
+        endforeach; 
+
+        echo json_encode($data);
+    }
+
     public function detail_mobil()
     {
         $this->load->view('api/detail_mobil');
     }
+   
     
     public function show_tanggal_booking()
     {
@@ -49,7 +74,6 @@ class api extends CI_Controller
         $qty = (!empty($_REQUEST['qty'])) ? $_REQUEST['qty'] : 1;
         $tgl_pinjam = $_REQUEST['data'][1] . ":00";
         $tgl_selesai = $_REQUEST['data'][2] . ":00";
-        var_dump($harga);
 
         $cek = $this->db->query("SELECT * FROM m_keranjang_belanja WHERE id_kendaraan='" . $id_kendaraan . "' AND id_user='" . $id_user . "'");
         $cek_tot = $cek->num_rows();
@@ -200,6 +224,37 @@ class api extends CI_Controller
             echo json_encode(array('status'=>'success', 'msg'=> $data->row_array()));
         }else{
             echo json_encode(array('status'=>'err', 'msg'=> 'Data tidak ditemukan'));
+        }
+    }
+    public function act_daftar()
+    {
+        $data = $this->db->get_where('m_user',array('username'=>$_REQUEST['username']));
+        if($data->num_rows()>=1){
+            echo json_encode(array('status'=>'err', 'msg'=>'Username sudah ada'));
+        }else{
+            $nama     = $_REQUEST['nama'];
+            $hp       = $_REQUEST['hp'];
+            $alamat   = $_REQUEST['alamat'];
+            $email    = $_REQUEST['email'];
+            $username = $_REQUEST['username'];
+            $password = $_REQUEST['password'];
+            $data = array(
+                'nama' => $nama,
+                'hp' => $hp,
+                'alamat' => $alamat,
+                'email' => $email,
+                'level' => 'user',
+                'username' => $username,
+                'password' => $password,
+                'date_create' => date('Y-m-d H:i:s')
+            );
+            $save = $this->db->insert('m_user',$data);
+
+            if($save){
+                echo json_encode(array('status'=>'success', 'msg'=>'Data berhasil disimpan'));
+            }else{
+                echo json_encode(array('status'=>'err', 'msg'=> 'Data gagal simpan'));
+            }
         }
     }
     public function proses_bayar()
