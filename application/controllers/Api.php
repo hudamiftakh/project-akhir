@@ -28,6 +28,7 @@ class api extends CI_Controller
     }
     public function api_show_mobil()
     {
+        $this->cors();
         if (!empty($_REQUEST['q']) or !empty($_REQUEST['jenis_transmisi'])) {
             $q = "WHERE a.jenis_transmisi='" . $_REQUEST['jenis_transmisi'] . "' AND a.nama LIKE '%" . $_REQUEST['q'] . "%'";
         } else {
@@ -116,6 +117,7 @@ class api extends CI_Controller
     
     public function saveOrder()
     {
+        $this->cors();
         try {
             $tgl_awal = $_REQUEST['tgl_awal'];
             $tgl_akhir = $_REQUEST['tgl_akhir'];
@@ -219,6 +221,7 @@ class api extends CI_Controller
     }
     public function act_login()
     {
+        $this->cors();
         $data = $this->db->get_where('m_user',array('username'=>$_REQUEST['username'], 'password'=>$_REQUEST['password']));
         if($data->num_rows()>=1){
             echo json_encode(array('status'=>'success', 'msg'=> $data->row_array()));
@@ -228,6 +231,7 @@ class api extends CI_Controller
     }
     public function act_daftar()
     {
+        $this->cors();
         $data = $this->db->get_where('m_user',array('username'=>$_REQUEST['username']));
         if($data->num_rows()>=1){
             echo json_encode(array('status'=>'err', 'msg'=>'Username sudah ada'));
@@ -259,6 +263,7 @@ class api extends CI_Controller
     }
     public function proses_bayar()
     {
+        $this->cors();
         if (isset($_REQUEST['simpan'])) {
             $tgl_bayar = $_REQUEST['tgl_bayar'];
             $config['upload_path'] = './storage/struk/';
@@ -298,6 +303,7 @@ class api extends CI_Controller
     }
     public function generate_key()
     {
+        $this->cors();
         try {
             if ($_POST):
                 $apikey = generateApiKey();
