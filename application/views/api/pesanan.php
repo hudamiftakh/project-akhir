@@ -136,7 +136,7 @@
                                         <p style="font-weight: body; font-size: 15px;" class="mb-1">Rp
                                             <?php echo number_format($value['total']); ?>
                                         </p>
-                                        <small>And some small print.</small>
+                                        <small>Klik untuk melihat detail transaksi</small>
                                     </a>
                                 <?php } ?>
                             </div>

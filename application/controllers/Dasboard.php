@@ -59,6 +59,68 @@ class dasboard extends CI_Controller
 		$data['halaman'] = 'dashboard/add_kendaraan';
 		$this->load->view('modul', $data);
 	}
+	public function transaksi()
+	{
+		$this->checkSession();
+		$data['halaman'] = 'dashboard/transaksi';
+		$this->load->view('modul', $data);
+	}
+	public function detail_transaksi()
+	{
+		$this->checkSession();
+		$data['halaman'] = 'dashboard/detail_transaksi';
+		$this->load->view('modul', $data);
+	}
+	public function add_sopir()
+	{
+		$this->checkSession();
+		$data['halaman'] = 'dashboard/add_sopir';
+		$this->load->view('modul', $data);
+	}
+	public function save_sopir()
+	{
+		$this->checkSession();
+		$nama = $_REQUEST['nama'];
+		$harga = $_REQUEST['harga'];
+		$deskripsi = $_REQUEST['deskripsi'];
+		$config['upload_path'] = './storage/sopir/';
+		$config['allowed_types'] = 'gif|jpg|png|jpeg';
+		$config['max_size'] = 80000;
+		$config['max_width'] = 10000;
+		$config['remove_space'] = 10000;
+		$config['encrypt_name'] = 10000;
+		$file_lama = $_POST['file_lama'];
+		$this->load->library('upload', $config);
+		if ($_FILES['file']['name'] != "") {
+			if (!$this->upload->do_upload('file')) {
+				echo json_encode(array('status' => 'error', 'msg' => $this->upload->display_errors()));
+			} else {
+				$upload_data = $this->upload->data();
+				$file = (empty($upload_data['file_name'])) ? "-" : $upload_data['file_name'];
+				unlink('./storage/sopir/' . $file_lama);
+			}
+		} else {
+			$file = $_REQUEST['file_lama'];
+		}
+		$data = array(
+			'nama' => $nama,
+			'harga' => $harga,
+			'deskripsi' => $deskripsi,
+			'foto' => $file,
+			'create_at' => date('Y-m-d H:i:s')
+		);
+		if (!empty($_REQUEST['id'])) {
+			$result = $this->db->where(array('id_sopir' => $_REQUEST['id']))->update('m_sopir', $data);
+		} else {
+			$result = $this->db->insert('m_sopir', $data);
+		}
+		if ($result) {
+			echo json_encode(array('status' => 'success', 'msg' => 'Data berhasil di'));
+		} else {
+			echo json_encode(array('status' => 'error', 'msg' => 'Data gagal di'));
+
+		}
+	}
 	public function create_kendaraan()
 	{
 		try {
@@ -137,10 +199,10 @@ class dasboard extends CI_Controller
 			$result = $this->db->where(array('id' => $_POST['id']))->update('m_foto_kendaraan', $data);
 		}
 		if ($result) {
-			redirect('./dasboard/add_foto_kendaraan?id='.$kendaraan_id);
+			redirect('./dasboard/add_foto_kendaraan?id=' . $kendaraan_id);
 			// echo json_encode(array('status' => 'success', 'msg' => 'Berhasil Disimpan'));
 		} else {
-			redirect('./dasboard/add_foto_kendaraan?id='.$kendaraan_id);
+			redirect('./dasboard/add_foto_kendaraan?id=' . $kendaraan_id);
 			// echo json_encode(array('status' => 'error', 'msg' => 'Gagal save'));
 		}
 
@@ -151,12 +213,12 @@ class dasboard extends CI_Controller
 		$id_foto = $_REQUEST['id_foto'];
 		$foto_lama = $_REQUEST['foto_lama'];
 		$kendaraan_id = $_REQUEST['kendaraan_id'];
-		$result = $this->db->where(array('foto_id'=>$id_foto))->delete('m_foto_kendaraan');
+		$result = $this->db->where(array('foto_id' => $id_foto))->delete('m_foto_kendaraan');
 		if ($result) {
-			unlink('./storage/'.$foto_lama);
-			redirect('./dasboard/add_foto_kendaraan?id='.$kendaraan_id);
-		}else{
-			redirect('./dasboard/add_foto_kendaraan?id='.$kendaraan_id);
+			unlink('./storage/' . $foto_lama);
+			redirect('./dasboard/add_foto_kendaraan?id=' . $kendaraan_id);
+		} else {
+			redirect('./dasboard/add_foto_kendaraan?id=' . $kendaraan_id);
 		}
 	}
 	public function sopir()

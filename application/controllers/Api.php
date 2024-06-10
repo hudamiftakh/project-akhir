@@ -26,6 +26,11 @@ class api extends CI_Controller
         $this->cors();
         $this->load->view('api/show_mobil');
     }
+    public function profile()
+    {
+        $this->cors();
+        $this->load->view('api/show_profile');
+    }
     public function api_show_mobil()
     {
         $this->cors();
@@ -56,7 +61,6 @@ class api extends CI_Controller
         $this->load->view('api/detail_mobil');
     }
    
-    
     public function show_tanggal_booking()
     {
         $this->load->view('api/show_tanggal_booking');

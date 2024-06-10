@@ -159,7 +159,7 @@
                                 <td style="padding-top: 10px;">
                                     <h5 class="font-16 mt-0 mb-1">[Sopir] <?php echo $detail_sopir['nama']; ?> </h5>
                                     <p class="m-0">
-                                        <span class="text-muted">Rp.<?php echo number_format($showDetaiMobil['harga']); ?>
+                                        <span class="text-muted">Rp.<?php echo number_format($detail_sopir['harga']); ?>
                                             /Hari</span>
                                     </p>
                                     <table>

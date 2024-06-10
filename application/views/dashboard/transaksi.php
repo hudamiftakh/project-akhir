@@ -20,14 +20,14 @@
     <div class="card-body px-4 py-3">
         <div class="row align-items-center">
             <div class="col-9">
-                <h4 class="fw-semibold mb-8">Manajemen Sopir</h4>
+                <h4 class="fw-semibold mb-8">Manajemen Transaksi</h4>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
                             <a class="text-muted text-decoration-none" href="./">Dashboard</a>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">Dashboard</li>
-                        <li class="breadcrumb-item" aria-current="page">Dashboard Management Sopir</li>
+                        <li class="breadcrumb-item" aria-current="page">Dashboard Management Transaksi</li>
                     </ol>
                 </nav>
             </div>
@@ -40,99 +40,53 @@
         </div>
     </div>
 </div>
-<?php if (isset($_REQUEST['hapus'])) {
-    $id = $_REQUEST['id'];
-    $result = $this->db->where(array('id_sopir' => $id))->delete("m_sopir");
-    if ($result) {
-        unlink('./storage/sopir/'.$_REQUEST['foto']);
-        echo "<script>
-            alert('Data berhasil dihapus');
-        </script>";
-    } else {
-        echo "<script>
-            alert('Data gagal dihapus');
-        </script>";
-    }
-} ?>
 <?php
-$check_data = $this->db->get('m_sopir')->num_rows();
+$check_data = $this->db->get('m_kendaraan')->num_rows();
 if ($check_data <= 0): ?>
     <div class="card text-center">
         <div class="card-body">
-            <h2>Manajemen Sopir</h2>
+            <h2>Manajemen kendaraan</h2>
             <br>
             <br>
             <img src="<?php echo base_url('assets/logo.png') ?>" width="260px" alt="">
             <br>
             <br>
             <br>
-            <div class="row">
-                <div class="col-3"></div>
-                <div class="col">
-                    <div class="row">
-                        <div class="col-md-12 d-grid gap-6">
-                            <a href="<?php echo base_url('create-sopir'); ?>" style="border-radius: 3px !important;"
-                                class="btn waves-effect waves-light btn-lg  btn-outline-primary">
-                                <i class="ti ti-plus"></i> Buat Sopir
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-3"></div>
-            </div>
+            <h3>Belum ada transaksi</h3>
+            <div class="col-3"></div>
         </div>
+    </div>
 
     </div>
 <?php else: ?>
     <div class="card w-100 position-relative overflow-hidden">
-        <div class="px-4 pt-4 card-header" nowrap="">
-            <div style="float: right;">
-                <a href="<?php echo base_url('create-sopir'); ?>" class="btn btn-outline-primary btn-lg rounded-end"
-                    style="border-radius: 3px !important;">
-                    <i class="ti ti-car"></i> &nbsp Buat Sopir
-                </a>
-            </div>
-        </div>
         <div class="card-body p-4">
             <div class="table-responsive">
-                <table class="table border table-striped display" id="DataSopir" style="width: 100%; table-layout:fixed">
+                <table class="table border table-bodered display"id="DataKendaraan"
+                    style="width: 100%; table-layout:fixed">
                     <thead class="bg-warning text-white">
                         <tr>
-                            <th width="3%" style="vertical-align: top; padding-top: 30px !important;">#</th>
-                            <th width="10%" nowrap="">Foto</th>
+                            <th width="10%" nowrap="">Tgl Transaksi</th>
+                            <th width="10%" nowrap="">Kode</th>
                             <th width="10%" nowrap="">Nama</th>
-                            <th width="10%" nowrap="">Harga / hari</th>
-                            <th width="10%" nowrap="">Deskripsi</th>
-                            <th width="10%" nowrap="">Created At</th>
-                            <th nowrap="" width="10%">Action</th>
+                            <th width="10%" nowrap="">Total</th>
+                            <th nowrap="" width="1%">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
-                        $result_data = $this->db->get('m_sopir')->result_array();
+                        $result_data = $this->db->join("m_user as b", 'a.user_id = b.id_user', 'left')->get('m_order as a')->result_array();
                         $no = 1;
                         foreach ($result_data as $key => $data):
                             ?>
                             <tr>
-                                <td><?php echo $no++; ?></td>
-                                <td>
-                                    <img src="<?php echo base_url('storage/sopir'); ?>/<?php echo $data['foto']; ?>"
-                                        class="rounded-circle" alt="Cinque Terre" width="120" height="120">
-                                </td>
-                                <td><?php echo $data['nama'] ?></td>
-                                <td>Rp. <?php echo number_format($data['harga'], 0, ',', '.') ?></td>
-                                <td><?php echo $data['deskripsi'] ?></td>
                                 <td><?php echo $data['create_at'] ?></td>
-                                <td nowrap="">
-                                    <form action="<?php echo base_url('sopir'); ?>" method="POST">
-                                        <input type="hidden" name="id" value="<?= $data['id_sopir'] ?>">
-                                        <input type="hidden" name="foto" value="<?= $data['foto'] ?>">
-                                        <a href="<?= base_url('create-sopir'); ?>?id=<?php echo $data['id_sopir'] ?>"
-                                            class="btn btn-outline-primary"><i class="fa fa-pencil"></i></a>
-                                        <button type="submit" name="hapus" class="btn btn-outline-danger"
-                                            onclick="return confirm('Apakah anda yakin ingin menghapus data ini ?')"><i
-                                                class="fa fa-trash"></i></button>
-                                    </form>
+                                <td><a href="<?php echo base_url() ?>"><?php echo $data['nomor_order'] ?></a></td>
+                                <td><?php echo $data['nama'] ?></td>
+                                <td>Rp. <?php echo number_format($data['total'], 0, ',', '.') ?></td>
+                                <td width="1px">
+                                    <a href="<?= base_url('dasboard/detail_transaksi'); ?>?kode_transaksi=<?php echo $data['nomor_order'] ?>"
+                                        class="btn btn-outline-success"><i class="fa fa-eye"></i></a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -196,7 +150,7 @@ if ($check_data <= 0): ?>
         });
     });
 
-    var table = $('#DataSopir').DataTable({
+    var table = $('#DataKendaraan').DataTable({
         "columnDefs": [
             { "orderable": false, "targets": 0 }
         ]

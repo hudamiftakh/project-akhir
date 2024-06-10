@@ -7,10 +7,10 @@
                 <div class="d-flex align-items-center">
                     <div>
                         <h2 class="fs-7">120</h2>
-                        <h6 class="fw-medium text-info mb-0">News Feed</h6>
+                        <h6 class="fw-medium text-info mb-0">Pelanggan</h6>
                     </div>
                     <div class="ms-auto">
-                        <span class="text-info display-6"><i class="ti ti-file-text"></i></span>
+                        <span class="text-info display-6"><i class="ti ti-users"></i></span>
                     </div>
                 </div>
             </div>
@@ -22,10 +22,10 @@
                 <div class="d-flex no-block align-items-center">
                     <div>
                         <h2 class="fs-7">150</h2>
-                        <h6 class="fw-medium text-primary mb-0">Invoices</h6>
+                        <h6 class="fw-medium text-primary mb-0">Mobil</h6>
                     </div>
                     <div class="ms-auto">
-                        <span class="text-primary display-6"><i class="ti ti-clipboard"></i></span>
+                        <span class="text-primary display-6"><i class="ti ti-car"></i></span>
                     </div>
                 </div>
             </div>
@@ -37,10 +37,10 @@
                 <div class="d-flex no-block align-items-center">
                     <div>
                         <h2 class="fs-7">450</h2>
-                        <h6 class="fw-medium text-success mb-0">Revenue</h6>
+                        <h6 class="fw-medium text-success mb-0">Sopir</h6>
                     </div>
                     <div class="ms-auto">
-                        <span class="text-success display-6"><i class="ti ti-credit-card"></i></span>
+                        <span class="text-success display-6"><i class="ti ti-user"></i></span>
                     </div>
                 </div>
             </div>
@@ -52,10 +52,10 @@
                 <div class="d-flex no-block align-items-center">
                     <div>
                         <h2 class="fs-7">100</h2>
-                        <h6 class="fw-medium text-danger mb-0">Sales</h6>
+                        <h6 class="fw-medium text-danger mb-0">transaksi</h6>
                     </div>
                     <div class="ms-auto">
-                        <span class="text-danger display-6"><i class="ti ti-pie-chart"></i></span>
+                        <span class="text-danger display-6"><i class="ti ti-chart"></i></span>
                     </div>
                 </div>
             </div>

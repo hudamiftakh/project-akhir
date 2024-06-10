@@ -29,7 +29,7 @@
       </a>
     </li>
     <li class="sidebar-item">
-      <a class="sidebar-link sidebar-link" href="<?php echo base_url('send-voice') ?>" aria-expanded="false">
+      <a class="sidebar-link sidebar-link" href="<?php echo base_url('transaksi') ?>" aria-expanded="false">
         <span class="rounded-3">
           <i class="ti ti-file-invoice"></i>
         </span>

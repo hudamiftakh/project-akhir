@@ -134,9 +134,9 @@ if ($check_data <= 0): ?>
                                 <td nowrap="">
                                     <form action="<?php echo base_url('kendaraan'); ?>">
                                         <input type="hidden" name="id" value="<?=$data['kendaraan_id']?>">
-                                        <a href="<?=base_url('create-kendaraan'); ?>?id=<?php echo $data['kendaraan_id'] ?>" class="btn btn-outline-primary btn-sm"><i class="fa fa-pencil"></i></a>
-                                        <a href="<?=base_url('dasboard/add_foto_kendaraan'); ?>?id=<?php echo $data['kendaraan_id'] ?>" class="btn btn-outline-success btn-sm"><i class="fa fa-image"></i></a>
-                                        <button type="submit" name="hapus" class="btn btn-outline-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data ini ?')"><i class="fa fa-trash"></i></button>
+                                        <a href="<?=base_url('create-kendaraan'); ?>?id=<?php echo $data['kendaraan_id'] ?>" class="btn btn-outline-primary"><i class="fa fa-pencil"></i></a>
+                                        <a href="<?=base_url('dasboard/add_foto_kendaraan'); ?>?id=<?php echo $data['kendaraan_id'] ?>" class="btn btn-outline-success"><i class="fa fa-image"></i></a>
+                                        <button type="submit" name="hapus" class="btn btn-outline-danger" onclick="return confirm('Apakah anda yakin ingin menghapus data ini ?')"><i class="fa fa-trash"></i></button>
                                     </form>
                                 </td>
                             </tr>
