@@ -81,7 +81,7 @@ if ($check_data <= 0): ?>
                             ?>
                             <tr>
                                 <td><?php echo $data['create_at'] ?></td>
-                                <td><a href="<?php echo base_url() ?>"><?php echo $data['nomor_order'] ?></a></td>
+                                <td><a href="<?= base_url('dasboard/detail_transaksi'); ?>?kode_transaksi=<?php echo $data['nomor_order'] ?>"><?php echo $data['nomor_order'] ?></a></td>
                                 <td><?php echo $data['nama'] ?></td>
                                 <td>Rp. <?php echo number_format($data['total'], 0, ',', '.') ?></td>
                                 <td width="1px">

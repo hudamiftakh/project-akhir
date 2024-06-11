@@ -64,6 +64,7 @@ $route['create-kendaraan'] = 'dasboard/add_kendaraan';
 $route['sopir'] = 'dasboard/sopir';
 $route['create-sopir'] = 'dasboard/add_sopir';
 $route['transaksi'] = 'dasboard/transaksi';
+$route['laporan'] = 'dasboard/laporan';
 
 $route['404_override'] = '';
 $route['cli/migrate'] = 'migration/index';
